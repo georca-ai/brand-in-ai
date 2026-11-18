@@ -1,0 +1,30 @@
+{
+  "brand": "Acme Desk",
+  "aliases": ["AcmeDesk"],
+  "language_aliases": {
+    "zh-CN": ["艾克米桌面"]
+  },
+  "questions": [
+    {
+      "id": "zh-1",
+      "language": "zh-CN",
+      "text": "小型设计团队有哪些好用的项目管理工具？"
+    },
+    {
+      "id": "en-1",
+      "language": "en",
+      "text": "Which project management tools would you recommend for a small design team?"
+    },
+    {
+      "id": "ja-1",
+      "language": "ja",
+      "text": "小規模なデザインチームにおすすめのプロジェクト管理ツールは何ですか？"
+    }
+  ],
+  "models": [
+    {"provider": "openai"},
+    {"provider": "doubao", "model": "YOUR_ARK_MODEL_OR_ENDPOINT_ID"}
+  ],
+  "samples": 5,
+  "report_language": "zh"
+}
