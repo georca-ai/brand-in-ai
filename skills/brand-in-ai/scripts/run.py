@@ -3,7 +3,11 @@
 import argparse
 from contextlib import closing
 from datetime import datetime, timezone
-import fcntl
+try:
+    import fcntl
+except ImportError:  # Windows
+    fcntl = None
+    import msvcrt
 from http.client import IncompleteRead
 import json
 import os
@@ -206,8 +210,12 @@ def execute(config, directory, *, resume=False, transport=post_json):
         raise ValueError("run state does not exist")
     with (directory / ".lock").open("ab") as lock:
         try:
-            fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        except BlockingIOError:
+            if fcntl is not None:
+                fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            else:
+                lock.seek(0)
+                msvcrt.locking(lock.fileno(), msvcrt.LK_NBLCK, 1)
+        except OSError:
             raise ValueError("this run is already in progress") from None
         with closing(sqlite3.connect(database)) as db:
             return execute_locked(config, directory, db, resume, transport)
