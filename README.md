@@ -47,3 +47,7 @@ See the [skill instructions](skills/brand-in-ai/SKILL.md) for the full workflow.
 ```sh
 python3 -m unittest discover -s tests -v
 ```
+
+---
+
+Maintained by [GEOrca](https://georca.com).
