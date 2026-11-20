@@ -47,3 +47,7 @@ python3 skills/brand-in-ai/scripts/run.py config.json --resume results/run-001
 ```sh
 python3 -m unittest discover -s tests -v
 ```
+
+---
+
+由 [GEOrca](https://georca.com) 维护。
